@@ -2,8 +2,10 @@ package com.example.helloworldtrial;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,6 +18,7 @@ public class MainActivity extends Activity {
 	private Camera camera;
 
 	private GestureDetector mGestureDetector;
+	private static final int TAKE_PICTURE_REQUEST = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +51,9 @@ public class MainActivity extends Activity {
 	            		card.setFootnote("well hello there");
 	            		View view = card.toView();
 	            		setContentView(view);
-	            		
-	            		//try starting a camera.
-	            		
-	            		
+	            	
+	            		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	            	    startActivityForResult(intent, TAKE_PICTURE_REQUEST);
 	            		
 	                    return true;
 	                } else if (gesture == Gesture.TWO_TAP) {
@@ -98,3 +100,5 @@ public class MainActivity extends Activity {
 
 
 }
+
+
