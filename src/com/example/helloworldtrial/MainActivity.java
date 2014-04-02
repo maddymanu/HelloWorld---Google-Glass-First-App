@@ -2,6 +2,7 @@ package com.example.helloworldtrial;
 
 import android.app.Activity;
 import android.content.Context;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
 
 public class MainActivity extends Activity {
+	private CameraPreview cameraPreview;
+	private Camera camera;
 
 	private GestureDetector mGestureDetector;
 	
@@ -19,12 +22,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		
+//		Card card = new Card(getApplicationContext());
+//		card.setText("wqdwq");
+//		card.setFootnote("well hello there");
+//		View view = card.toView();
+//		//setContentView(view);
 		
-		Card card = new Card(getApplicationContext());
-		card.setText("wqdwq");
-		card.setFootnote("well hello there");
-		View view = card.toView();
-		setContentView(view);
+		cameraPreview = new CameraPreview(this);
+	    setContentView(cameraPreview);
 	
 		mGestureDetector = createGestureDetector(this);
 	}
@@ -36,11 +41,18 @@ public class MainActivity extends Activity {
 	            @Override
 	            public boolean onGesture(Gesture gesture) {
 	                if (gesture == Gesture.TAP) {
+	                	
+	                	
 	                	Card card = new Card(getApplicationContext());
 	            		card.setText("Tapped!");
 	            		card.setFootnote("well hello there");
 	            		View view = card.toView();
 	            		setContentView(view);
+	            		
+	            		//try starting a camera.
+	            		
+	            		
+	            		
 	                    return true;
 	                } else if (gesture == Gesture.TWO_TAP) {
 	                    // do something on two finger tap
